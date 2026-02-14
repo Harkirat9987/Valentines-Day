@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Card 🐝💛</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            font-family: 'Caveat', cursive;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        .text-top {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            letter-spacing: 0.01em;
+            animation: fade-in-down 1s ease-out forwards;
+            opacity: 0;
+            text-transform: uppercase;
+        }
+
+        .bee-container {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .bee {
+            position: absolute;
+            width: 120px;
+            height: 110px;
+        }
+
+        .bee svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Bee 1 - Left bee (MALE) */
+        .bee-1 {
+            left: calc(50% - 135px);
+            animation: float-bee-1 5s ease-in-out infinite;
+        }
+
+        /* Bee 2 - Right bee (FEMALE) */
+        .bee-2 {
+            left: calc(50% + 15px);
+            animation: float-bee-2 6s ease-in-out infinite;
+            animation-delay: 0.8s;
+        }
+
+        /* Heart above the bees */
+        .heart-center {
+            position: absolute;
+            left: 50%;
+            top: -5px;
+            transform: translateX(-50%);
+            font-size: 26px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+            }
+            25% {
+                transform: translateX(-50%) scale(1.15);
+            }
+            50% {
+                transform: translateX(-50%) scale(1);
+            }
+        }
+
+        @keyframes float-bee-1 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(-2deg);
+            }
+            25% {
+                transform: translate(-10px, -12px) rotate(-3deg);
+            }
+            50% {
+                transform: translate(6px, -6px) rotate(0deg);
+            }
+            75% {
+                transform: translate(-8px, -15px) rotate(-2deg);
+            }
+        }
+
+        @keyframes float-bee-2 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(2deg);
+            }
+            25% {
+                transform: translate(8px, -10px) rotate(3deg);
+            }
+            50% {
+                transform: translate(-6px, -14px) rotate(1deg);
+            }
+            75% {
+                transform: translate(10px, -8px) rotate(2deg);
+            }
+        }
+
+        /* Wing flap animation */
+        .wing {
+            transform-origin: center;
+            animation: wing-flap 0.15s ease-in-out infinite;
+        }
+
+        .wing-right {
+            animation-delay: 0.075s;
+        }
+
+        @keyframes wing-flap {
+            0%, 100% {
+                opacity: 0.9;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(0.9);
+            }
+        }
+
+        .question-text {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(24px, 4.5vw, 38px);
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            animation: fade-in-up 1s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.3s;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            animation: fade-in-up 1s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.5s;
+        }
+
+        .btn {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(20px, 3.5vw, 30px);
+            font-weight: 700;
+            padding: 12px 35px;
+            border: 3px solid #2C2C2C;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-yes {
+            background: #FFCC00;
+            color: #2C2C2C;
+        }
+
+        .btn-yes:hover {
+            background: #FFD700;
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(255, 204, 0, 0.4);
+        }
+
+        .btn-no {
+            background: #ffffff;
+            color: #2C2C2C;
+            position: relative;
+            z-index: 100;
+        }
+
+        .btn-no:hover {
+            background: #f5f5f5;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+        }
+
+        .response-message {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 700;
+            color: #FFCC00;
+            margin-top: 30px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.5s ease;
+        }
+
+        .response-message.show {
+            opacity: 1;
+            transform: scale(1);
+            animation: celebration 0.6s ease-out;
+        }
+
+        .fyi-text {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(16px, 3vw, 22px);
+            font-weight: 600;
+            color: #666;
+            margin-top: 30px;
+            animation: fade-in-up 1s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.7s;
+        }
+
+        @keyframes celebration {
+            0% { transform: scale(0) rotate(-10deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .emoji {
+            display: inline-block;
+            font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        }
+
+        @keyframes fade-in-down {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .bee {
+                width: 120px;
+                height: 110px;
+            }
+
+            .bee-1 {
+                left: calc(50% - 140px);
+            }
+
+            .bee-2 {
+                left: calc(50% + 20px);
+            }
+
+            .bee-container {
+                height: 160px;
+            }
+
+            .heart-center {
+                font-size: 26px;
+            }
+
+            .btn {
+                padding: 12px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bee {
+                width: 100px;
+                height: 90px;
+            }
+
+            .bee-1 {
+                left: calc(50% - 120px);
+            }
+
+            .bee-2 {
+                left: calc(50% + 15px);
+            }
+
+            .heart-center {
+                font-size: 22px;
+            }
+
+            .button-container {
+                gap: 15px;
+            }
+
+            .btn {
+                padding: 10px 25px;
+            }
+        }
+
+        /* Confetti effect */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #FFCC00;
+            position: absolute;
+            animation: confetti-fall 3s linear;
+            opacity: 0;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Answer Again button */
+        .answer-again-btn {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            font-family: 'Caveat', cursive;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 6px 12px;
+            background: #ffffff;
+            border: 1.5px solid #2C2C2C;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .answer-again-btn:hover {
+            background: #f5f5f5;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <!-- Top text -->
+        <div class="text-top">
+            Can't stop bee-ing about you <span class="emoji">💛🥰</span>
+        </div>
+
+        <!-- Bee container -->
+        <div class="bee-container">
+            <!-- Heart above bees -->
+            <div class="heart-center">
+                <span class="emoji">❤️</span>
+            </div>
+
+            <!-- Bee 1 (Left - MALE BEE) -->
+            <div class="bee bee-1">
+                <svg viewBox="0 0 150 140" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wings on SIDES -->
+                    <g class="wing wing-left">
+                        <circle cx="28" cy="60" r="18" 
+                                fill="none" 
+                                stroke="#8B8B8B" 
+                                stroke-width="2.5" 
+                                opacity="0.9"/>
+                    </g>
+                    <g class="wing wing-right">
+                        <circle cx="122" cy="60" r="18" 
+                                fill="none" 
+                                stroke="#8B8B8B" 
+                                stroke-width="2.5" 
+                                opacity="0.9"/>
+                    </g>
+                    
+                    <!-- Body -->
+                    <ellipse cx="75" cy="70" rx="50" ry="34" fill="#FFCC00" stroke="#2C2C2C" stroke-width="2.5"/>
+                    
+                    <!-- Black stripes -->
+                    <ellipse cx="55" cy="70" rx="6" ry="30" fill="#2C2C2C"/>
+                    <ellipse cx="70" cy="70" rx="6" ry="30" fill="#2C2C2C"/>
+                    <ellipse cx="85" cy="70" rx="6" ry="30" fill="#2C2C2C"/>
+                    
+                    <!-- Eyes -->
+                    <circle cx="102" cy="68" r="3.5" fill="#2C2C2C"/>
+                    <circle cx="114" cy="68" r="3.5" fill="#2C2C2C"/>
+                    
+                    <!-- Smile -->
+                    <path d="M 102 85 Q 108 90 114 85" 
+                          stroke="#2C2C2C" 
+                          stroke-width="2" 
+                          fill="none" 
+                          stroke-linecap="round"/>
+                    
+                    <!-- Antennae -->
+                    <line x1="65" y1="38" x2="58" y2="22" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="85" y1="38" x2="92" y2="22" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="58" cy="20" r="3" fill="#2C2C2C"/>
+                    <circle cx="92" cy="20" r="3" fill="#2C2C2C"/>
+                    
+                    <!-- Legs -->
+                    <line x1="38" y1="102" x2="28" y2="120" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="55" y1="103" x2="50" y2="124" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="75" y1="104" x2="75" y2="127" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="95" y1="103" x2="100" y2="124" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="112" y1="102" x2="122" y2="120" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            
+            <!-- Bee 2 (Right - FEMALE BEE) -->
+            <div class="bee bee-2">
+                <svg viewBox="0 0 150 140" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wings on SIDES -->
+                    <g class="wing wing-left">
+                        <circle cx="28" cy="60" r="18" 
+                                fill="none" 
+                                stroke="#8B8B8B" 
+                                stroke-width="2.5" 
+                                opacity="0.9"/>
+                    </g>
+                    <g class="wing wing-right">
+                        <circle cx="122" cy="60" r="18" 
+                                fill="none" 
+                                stroke="#8B8B8B" 
+                                stroke-width="2.5" 
+                                opacity="0.9"/>
+                    </g>
+                    
+                    <!-- Body -->
+                    <ellipse cx="75" cy="70" rx="50" ry="34" fill="#FFCC00" stroke="#2C2C2C" stroke-width="2.5"/>
+                    
+                    <!-- Black stripes -->
+                    <ellipse cx="65" cy="70" rx="6" ry="30" fill="#2C2C2C"/>
+                    <ellipse cx="80" cy="70" rx="6" ry="30" fill="#2C2C2C"/>
+                    <ellipse cx="95" cy="70" rx="6" ry="30" fill="#2C2C2C"/>
+                    
+                    <!-- Eyes -->
+                    <circle cx="36" cy="68" r="3.5" fill="#2C2C2C"/>
+                    <circle cx="48" cy="68" r="3.5" fill="#2C2C2C"/>
+                    
+                    <!-- Smile -->
+                    <path d="M 34 85 Q 42 93 50 85" 
+                          stroke="#2C2C2C" 
+                          stroke-width="2" 
+                          fill="none" 
+                          stroke-linecap="round"/>
+                    
+                    <!-- Rosy cheeks -->
+                    <circle cx="32" cy="78" r="6" fill="#FF6B9D" opacity="0.7"/>
+                    <circle cx="52" cy="78" r="6" fill="#FF6B9D" opacity="0.7"/>
+                    
+                    <!-- Antennae -->
+                    <line x1="65" y1="38" x2="58" y2="22" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="85" y1="38" x2="92" y2="22" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="58" cy="20" r="3" fill="#2C2C2C"/>
+                    <circle cx="92" cy="20" r="3" fill="#2C2C2C"/>
+                    
+                    <!-- Legs -->
+                    <line x1="38" y1="102" x2="28" y2="120" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="55" y1="103" x2="50" y2="124" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="75" y1="104" x2="75" y2="127" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="95" y1="103" x2="100" y2="124" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="112" y1="102" x2="122" y2="120" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- FYI explanation at bottom -->
+        <div class="fyi-text">
+            FYI it means (Can't stop thinking about you) <span class="emoji">😂😂</span>
+        </div>
+
+    </div>
+
+    <script>
+        function handleYes() {
+            const message = document.getElementById('responseMessage');
+            message.innerHTML = 'Yay! You made me the happiest! <span class="emoji">🎉💛🐝</span>';
+            message.classList.add('show');
+            
+            // Hide buttons
+            document.querySelector('.button-container').style.display = 'none';
+            document.querySelector('.question-text').style.display = 'none';
+            
+            // Add confetti
+            createConfetti();
+        }
+
+        function handleNo() {
+            const noBtn = document.querySelector('.btn-no');
+            const yesBtn = document.querySelector('.btn-yes');
+            
+            // Calculate safe boundaries
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+            const maxX = window.innerWidth - btnWidth - 50;
+            const maxY = window.innerHeight - btnHeight - 50;
+            
+            // Generate random position
+            const randomX = Math.max(50, Math.random() * maxX);
+            const randomY = Math.max(50, Math.random() * maxY);
+            
+            // Move button with fancy animation and maintain visibility
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.zIndex = '100';
+            noBtn.style.transition = 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            
+            // Add random rotation for fun
+            const randomRotation = (Math.random() - 0.5) * 360;
+            noBtn.style.transform = `rotate(${randomRotation}deg)`;
+            
+            // Make Yes button bigger with each NO click
+            const currentScale = yesBtn.style.transform || 'scale(1)';
+            const currentSize = parseFloat(currentScale.match(/scale\(([\d.]+)\)/)?.[1] || 1);
+            const newSize = Math.min(currentSize + 0.15, 2.5);
+            yesBtn.style.transform = `scale(${newSize})`;
+            yesBtn.style.transition = 'all 0.3s ease';
+        }
+
+        function createConfetti() {
+            const colors = ['#FFCC00', '#FFD700', '#FF6B9D', '#FF69B4', '#FFA500'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        function resetCard() {
+            // Reload the page to reset everything
+            location.reload();
+        }
+    </script>
+</body>
+</html>
